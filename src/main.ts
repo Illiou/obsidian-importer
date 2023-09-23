@@ -51,7 +51,7 @@ export class ImportContext {
 	attachments = 0;
 	skipped: string[] = [];
 	failed: string[] = [];
-	maxFileNameLength: number = 100;
+	maxFileNameLength: number = 1000;
 
 	cancelled: boolean = false;
 
