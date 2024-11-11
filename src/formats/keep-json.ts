@@ -1,4 +1,4 @@
-import { FrontMatterCache, Notice, Setting, TFolder } from 'obsidian';
+import { FrontMatterCache, moment, Notice, Setting, TFolder } from 'obsidian';
 import { PickedFile } from '../filesystem';
 import { FormatImporter } from '../format-importer';
 import { ATTACHMENT_EXTS, ImportContext } from '../main';
@@ -170,6 +170,9 @@ export class KeepImporter extends FormatImporter {
 		if (tags.length > 0) {
 			frontMatter['tags'] = tags.map(tag => sanitizeTag(tag));
 		}
+
+		frontMatter['created'] = moment(keepJson.createdTimestampUsec / 1000).format('YYYY-MM-DDTHH:mm:ss');
+		frontMatter['modified'] = moment(keepJson.userEditedTimestampUsec / 1000).format('YYYY-MM-DDTHH:mm:ss');
 
 		mdContent.push(serializeFrontMatter(frontMatter));
 
